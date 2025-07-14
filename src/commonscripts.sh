@@ -6,6 +6,8 @@
 
 python_environments_path=""
 python_versions_path=""
+vscode_path=""
+pycharm_path=""
 
 #### Do not modify under this line ####
 

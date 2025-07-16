@@ -1,0 +1,22 @@
+# Obtained from https://github.com/agurwicz/scripts.
+
+usage_message="
+Prints the content of a script in \$PATH.
+Usage: `basename ${0}` script_name
+    script_name    name of the script to print
+"
+
+source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+get_sourced "${0}" "${BASH_SOURCE}"
+usage "${1}" "${usage_message}"
+
+script_name="${1}"
+
+script_path=$(which "${script_name}.sh")
+
+if [[ ! -f ${script_path} ]]; then
+    echo "Error: Script not found."
+    [[ ${sourced} == true ]] && return 1 || exit 1
+fi
+
+cat "${script_path}"

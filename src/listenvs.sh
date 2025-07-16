@@ -5,7 +5,7 @@ Lists all Python environments.
 Usage: `basename ${0}`   
 "
 
-source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+source "$(dirname "$(command -v ${0})")/.commonscripts.sh"
 get_sourced "${0}" "${BASH_SOURCE}"
 usage "${1}" "${usage_message}"
 check_variables "python_environments_path" || {

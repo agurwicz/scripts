@@ -6,7 +6,7 @@ Usage: `basename ${0}` script_name
     script_name    name of the script to open
 "
 
-source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+source "$(dirname "$(command -v ${0})")/.commonscripts.sh"
 get_sourced "${0}" "${BASH_SOURCE}"
 usage "${1}" "${usage_message}"
 

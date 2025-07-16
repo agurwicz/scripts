@@ -7,7 +7,7 @@ Usage: `basename ${0}` [environment_name] [main_relative_path]
     main_relative_path    path of the main file relative to \$PWD (default: \"main.py\")
 "
 
-source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+source "$(dirname "$(command -v ${0})")/.commonscripts.sh"
 get_sourced "${0}" "${BASH_SOURCE}"
 assert_not_sourced || return 1
 usage "${1}" "${usage_message}"

@@ -6,7 +6,7 @@ Usage: `basename ${0}` environment_name
     environment_name    name of the environment to be deleted
 "
 
-source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+source "$(dirname "$(command -v ${0})")/.commonscripts.sh"
 get_sourced "${0}" "${BASH_SOURCE}"
 usage "${1}" "${usage_message}"
 check_variables "python_environments_path" || {

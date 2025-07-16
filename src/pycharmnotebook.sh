@@ -6,7 +6,7 @@ Usage: `basename ${0}` notebook_name
     notebook_name    name of the notebook to be created
 "
 
-source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+source "$(dirname "$(command -v ${0})")/.commonscripts.sh"
 get_sourced "${0}" "${BASH_SOURCE}"
 assert_not_sourced || return 1
 usage "${1}" "${usage_message}"

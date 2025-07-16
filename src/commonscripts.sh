@@ -1,28 +1,25 @@
 # Obtained from https://github.com/agurwicz/scripts.
-# Variables and methods to be used in other scripts.
 
-
-#### Modify values here ####
-
-python_environments_path=""
-python_versions_path=""
-vscode_path=""
-pycharm_path=""
-
-#### Do not modify under this line ####
-
+source "$(dirname ${0})/variables.txt"
+python_relative_path="bin/python"
+activate_relative_path="bin/activate"
 
 function usage {
-
     if [[ "${1}" == "-h" || "${1}" == "--help" ]]; then
         printf "%s\n" "${2}"
         exit 0
     fi
+}
 
+function get_sourced {
+    if [[ "${1}" == "${2}" ]]; then 
+        sourced=false
+    else 
+        sourced=true
+    fi
 }
 
 function check_variables {
-
     local variables=("$@")
     local variable
 
@@ -35,7 +32,6 @@ function check_variables {
 }
 
 function check_environment {
-
     python_path="${python_environments_path}/${1}/${python_relative_path}"
     activate_path="${python_environments_path}/${1}/${activate_relative_path}"
 
@@ -45,16 +41,16 @@ function check_environment {
     fi 
 }
 
-case "$(uname -sr)" in
-    Darwin* | Linux*)
-        python_relative_path="bin/python"
-        activate_relative_path="bin/activate";;
+function assert_sourced {
+    if [[ ${sourced} == false ]]; then
+        echo "Error: Script must be sourced."
+        exit 1
+    fi
+}
 
-    CYGWIN* | MINGW* | MINGW32* | MSYS*)
-        python_relative_path="Scripts/python.exe"
-        activate_relative_path="Scripts/activate.bat";;
-    
-    *)
-        echo 'Error: OS not recognized'
-        exit 1;;
-esac
+function assert_not_sourced {
+    if [[ ${sourced} == true ]]; then
+        echo "Error: Script can't be sourced."
+        return 1
+    fi
+}

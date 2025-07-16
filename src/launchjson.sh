@@ -1,20 +1,19 @@
 # Obtained from https://github.com/agurwicz/scripts.
-# Creates "launch.json" file for Visual Studio Code with default configuration.
 
 usage_message="
+Creates "launch.json" file for Visual Studio Code with default configuration.
 Usage: `basename ${0}` [environment_name] [main_relative_path]
     environment_name      name of the environment to be activated (default: \"general\")
     main_relative_path    path of the main file relative to \$PWD (default: \"main.py\")
 "
 
-if [[ "${0}" == "${BASH_SOURCE}" ]]; then sourced=false; else sourced=true; fi
 source "$(dirname "$(command -v ${0})")/commonscripts.sh"
+get_sourced "${0}" "${BASH_SOURCE}"
+assert_not_sourced || return 1
 usage "${1}" "${usage_message}"
 check_variables "python_environments_path" "python_relative_path" || {
     [[ ${sourced} == true ]] && return 1 || exit 1
 }
-
-if [[ ${sourced} == true ]]; then echo "Error: Script can't be sourced."; return 1; fi
 
 environment_name="${1:-general}"
 main_relative_path="${2:-main.py}"

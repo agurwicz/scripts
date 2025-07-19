@@ -2,7 +2,7 @@
 
 usage_message="
 Prints the content of a script in \$PATH.
-Usage: `basename ${0}` script_name
+Usage: $(basename ${0}) script_name
     script_name    name of the script to print
 "
 
@@ -11,6 +11,10 @@ get_sourced "${0}" "${BASH_SOURCE}"
 usage "${1}" "${usage_message}"
 
 script_name="${1}"
+
+check_variables "script_name" || {
+    [[ ${sourced} == true ]] && return 1 || exit 1
+}
 
 script_path=$(which "${script_name}.sh")
 

@@ -1,4 +1,5 @@
 @echo off
+rem Obtained from https://github.com/agurwicz/scripts
 
 if "%~1" == "" (     
 

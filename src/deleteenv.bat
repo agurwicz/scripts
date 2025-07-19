@@ -13,7 +13,7 @@ call %scripts_path% || exit /b 0
 
 set "environment_name=%1"
 
-call %scripts_path% :check_variables python_environments_path || exit /b 0
+call %scripts_path% :check_variables python_environments_path environment_name || exit /b 0
 
 call %scripts_path% :assert_environment_exist %environment_name% || exit /b 0
 

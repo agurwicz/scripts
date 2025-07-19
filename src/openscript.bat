@@ -13,6 +13,8 @@ call %scripts_path% || exit /b 0
 
 set "script_name=%1"
 
+call %scripts_path% :check_variables script_name || exit /b 0
+
 set "script_path="
 for /f "delims=" %%A in ('where %script_name% 2^>nul') do ( 
     set "script_path=%%A"

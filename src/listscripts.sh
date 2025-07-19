@@ -2,7 +2,7 @@
 
 usage_message="
 Lists the scripts available.
-Usage: `basename ${0}`
+Usage: $(basename ${0})
 "
 
 source "$(dirname "$(command -v ${0})")/.commonscripts.sh"

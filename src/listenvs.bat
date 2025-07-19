@@ -9,7 +9,7 @@ if "%1" == "-h" (
 
 set "scripts_path=%~dp0\.commonscripts.bat"
 call %scripts_path% || exit /b 0
-call %scripts_path% :check_variables python_environments_path python_versions_path || exit /b 0
+call %scripts_path% :check_variables python_environments_path python_relative_path || exit /b 0
 
 setlocal enabledelayedexpansion
 for /f "delims= " %%A in ('dir /b "%python_environments_path%"') do (

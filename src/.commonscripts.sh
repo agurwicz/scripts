@@ -1,6 +1,7 @@
 # Obtained from https://github.com/agurwicz/scripts.
 
 source "$(dirname ${0})/variables.txt"
+
 python_relative_path="bin/python"
 activate_relative_path="bin/activate"
 
@@ -31,12 +32,22 @@ function check_variables {
     done
 }
 
-function check_environment {
+function assert_environment_exist {
     python_path="${python_environments_path}/${1}/${python_relative_path}"
     activate_path="${python_environments_path}/${1}/${activate_relative_path}"
 
     if [[ ! -f "${python_path}" || ! -f "${activate_path}" ]]; then
         echo "Error: Environment \"${1}\" does not exist."
+        return 1
+    fi 
+}
+
+function assert_environment_not_exist {
+    python_path="${python_environments_path}/${1}/${python_relative_path}"
+    activate_path="${python_environments_path}/${1}/${activate_relative_path}"
+
+    if [[ -f "${python_path}" || -f "${activate_path}" ]]; then
+        echo "Error: Environment \"${1}\" already exists."
         return 1
     fi 
 }

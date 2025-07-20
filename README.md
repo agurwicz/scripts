@@ -26,3 +26,20 @@ Each script contains a *help* option that explains its usage. Run it with:
 
 <script>.bat -h
 ```
+
+## List of Scripts
+
+| Script            | Purpose                                                                       | macOS/Linux? | Windows? |
+|-------------------|-------------------------------------------------------------------------------|:------------:|:--------:|
+| `createenv`       | Creates a Python environment.                                                 | ✅           | ✅       |
+| `activateenv`     | Activates a Python environment.                                               | ✅           | ✅       |
+| `deleteenv`       | Deletes a Python environment.                                                 | ✅           | ✅       |
+| `listenvs`        | Lists all Python environments.                                                | ✅           | ✅       |
+| `pythonversions`  | Lists all Python versions available.                                          | ✅           | ✅       |
+| `listscripts`     | Lists the scripts available.                                                  | ✅           | ✅       |
+| `catscript`       | Prints the content of a script in `$PATH`.                                    | ✅           | ✅       |
+| `openscript`      | Opens a script in `$PATH`.                                                    | ✅           | ✅       |
+| `launchjson`      | Creates "launch.json" file for Visual Studio Code with default configuration. | ✅           | ✅       |
+| `createnotebook`  | Creates empty Jupyter Notebook in `$PWD`.                                     | ✅           | ❌       |
+| `pycharmnotebook` | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                | ✅           | ❌       |
+| `vscodenotebook`  | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     | ✅           | ❌       |

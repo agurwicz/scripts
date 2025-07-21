@@ -17,7 +17,7 @@ for /f "delims=" %%A in ('dir /b /ad "%python_versions_path%"') do (
     if exist "%python_versions_path%\%%A\python.exe" (
         set "python_version=%%A"
         set "python_version=!python_version:Python=!"
-        echo %python_version%
+        echo !python_version!
     )
 )
 endlocal

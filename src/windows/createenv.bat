@@ -27,5 +27,5 @@ call "%python_versions_path%\Python%python_version:.=%\python.exe" -m venv "%env
 call "%environment_path%\%python_relative_path%" -m pip install --upgrade %packages_to_install%
 
 if "%3" == "-a" (
-    call activateenv %environment_name%
+    call "%~dp0\activateenv.bat" %environment_name%
 )

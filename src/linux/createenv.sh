@@ -35,5 +35,5 @@ environment_path="${python_environments_path}/${environment_name}"
 "${environment_path}/${python_relative_path}" -m pip install --upgrade "${packages_to_install[@]}"
 
 if [[ ${activate} == true ]]; then
-    source activateenv.sh "${environment_name}"
+    source "$(dirname "$(command -v ${0})")/activateenv.sh" "${environment_name}"
 fi

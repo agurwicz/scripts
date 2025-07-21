@@ -1,5 +1,5 @@
 @echo off
-rem Obtained from https://github.com/agurwicz/scripts
+rem Obtained from https://github.com/agurwicz/scripts.
 
 if "%1" == "-h" (
     echo Opens a script in %%PATH%%.

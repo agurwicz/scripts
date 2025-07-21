@@ -40,6 +40,6 @@ Each script contains a *help* option that explains its usage. Run it with:
 | `catscript`       | Prints the content of a script in `$PATH`.                                    | ✅           | ✅       |
 | `openscript`      | Opens a script in `$PATH`.                                                    | ✅           | ✅       |
 | `launchjson`      | Creates "launch.json" file for Visual Studio Code with default configuration. | ✅           | ✅       |
-| `createnotebook`  | Creates empty Jupyter Notebook in `$PWD`.                                     | ✅           | ❌       |
-| `pycharmnotebook` | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                | ✅           | ❌       |
-| `vscodenotebook`  | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     | ✅           | ❌       |
+| `createnotebook`  | Creates empty Jupyter Notebook in `$PWD`.                                     | ✅           | ✅       |
+| `pycharmnotebook` | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                | ✅           | ✅       |
+| `vscodenotebook`  | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     | ✅           | ✅       |

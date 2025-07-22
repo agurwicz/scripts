@@ -37,6 +37,7 @@ Each script contains a *help* option that explains its usage. Run it with:
 | `activateenv`     | Activates a Python environment.                                               | ✅           | ✅       |
 | `deleteenv`       | Deletes a Python environment.                                                 | ✅           | ✅       |
 | `listenvs`        | Lists all Python environments.                                                | ✅           | ✅       |
+| `installpackages` | Installs and upgrades packages in a Python environment.                       | ❌           | ✅       |
 | `pythonversions`  | Lists all Python versions available.                                          | ✅           | ✅       |
 | `listscripts`     | Lists the scripts available.                                                  | ✅           | ✅       |
 | `catscript`       | Prints the content of a script in `$PATH`.                                    | ✅           | ✅       |

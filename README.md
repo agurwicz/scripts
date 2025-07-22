@@ -1,6 +1,8 @@
 # Scripts
 
 Bash and batch scripts used in my day to day.
+Special thanks and appropriate credits go to [Lance Endres](https://github.com/lendres) for organizing an [initial version of the Python scripts for Windows](https://github.com/lendres/Python-Scripts).
+
 
 Add the source directory ([`src/linux`](src/linux) or [`src/windows`](src/windows)) to `$PATH` for access from anywhere.
 

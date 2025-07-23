@@ -32,8 +32,12 @@ packages_to_install=(pip setuptools)
 environment_path="${python_environments_path}/${environment_name}"  
 
 "${python_versions_path}/${python_version}/bin/python3" -m venv "${environment_path}"
-"${environment_path}/${python_relative_path}" -m pip install --upgrade "${packages_to_install[@]}"
 
-if [[ ${activate} == true ]]; then
-    source "$(dirname "$(command -v ${0})")/activateenv.sh" "${environment_name}"
+activate="${3}"
+if [[ ${sourced} == true ]]; then
+    sourced_command="source"
+else
+    sourced_command=""
 fi
+
+${sourced_command} "$(dirname "$(command -v ${0})")/installpackages.sh" "pip setuptools" ${environment_name} ${activate}

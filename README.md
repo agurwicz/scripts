@@ -4,7 +4,7 @@ Scripts used in my day to day, (re)written in Python for easier cross-platform c
 Special thanks and appropriate credits go to [Lance Endres](https://github.com/lendres) for [initially organizing and improving the Python scripts for Windows](https://github.com/lendres/Python-Scripts).
 
 > [!IMPORTANT]
-> Variables in [`variables.json`](src/variables.json) need to be defined before use.
+> Variables in [`variables.xml`](src/variables.xml) need to be defined before use.
 
 Each script contains a *help* option that explains its usage. Run it with:
 ```bash

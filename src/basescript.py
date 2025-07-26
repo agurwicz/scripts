@@ -1,6 +1,5 @@
 # Obtained from https://github.com/agurwicz/scripts.
 
-import json
 import platform
 import subprocess
 import sys
@@ -8,6 +7,7 @@ from abc import ABC, abstractmethod
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, Namespace
 from pathlib import Path
 from shutil import which
+from xml.etree import ElementTree
 
 
 class BaseScript(ABC):
@@ -158,10 +158,10 @@ class BaseScript(ABC):
 
     def __get_and_check_variables(self, variables_to_check):
         
-        variables_file_name = 'variables.json'
+        variables_file_name = 'variables.xml'
 
-        with open(file=Path(__file__).parent.joinpath(variables_file_name), mode='r') as json_variables:
-            variables = Namespace(**json.load(fp=json_variables))
+        variables_file = ElementTree.parse(source=Path(__file__).parent.joinpath(variables_file_name))
+        variables = Namespace(**variables_file.getroot().attrib)
 
         if self._is_windows:
             variables.python_relative_path = r'Scripts\python.exe'

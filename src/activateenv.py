@@ -38,15 +38,13 @@ class ActivateEnv(BaseScript):
             # Can't `source` from within Python. 
             # Solving by setting `rcfile` to the activation script, but this spawns a new shell.
             # Exit with `exit` instead of usual `deactivate`.
-            self.run_command(
-                command='/usr/bin/env',
-                parameters=('bash', '--rcfile', activate_path),
-                show_output=True
-            )
+            self.run_command(command='/usr/bin/env', parameters=('bash', '--rcfile', activate_path), show_output=True)
 
         else:
-            raise Exception('Script not yet compatible with Windows.')
-
+            # Calling `activate.bat` from subprocess doesn't propagate environment to the terminal.
+            # Solving by spawning a new shell that starts running `activate.bat`.
+            # Exit with `exit` instead of usual `deactivate`.
+            self.run_command(command='cmd', parameters=('/k', activate_path), show_output=True)
 
 if __name__ == '__main__':
     ActivateEnv()

@@ -25,7 +25,12 @@ class ListScripts(BaseScript):
 
         for script_path in Path(__file__).parent.iterdir():
             
-            if script_path.is_file() and script_path.suffix == '.py' and script_path.name not in ignore:
+            if (
+                script_path.is_file()
+                and script_path.suffix == '.py'
+                and script_path.name not in ignore
+                and not script_path.name.startswith('.')
+            ):
 
                 print(script_path.name)
 

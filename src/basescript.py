@@ -48,7 +48,14 @@ class BaseScript(ABC):
         return 'windows' in platform.system().lower()
 
     @staticmethod
-    def run_command(command, parameters=(), show_output=False):
+    def open_command(command, parameters=()):
+
+        if not isinstance(parameters, (list, tuple)):
+            parameters = [parameters]
+
+        subprocess.Popen(args=[command]+list(parameters))
+
+    def run_command(self, command, parameters=(), show_output=False):
         
         if not isinstance(parameters, (list, tuple)):
             parameters = [parameters]
@@ -56,7 +63,8 @@ class BaseScript(ABC):
         result = subprocess.run(
             args=[command]+list(parameters),
             capture_output=not show_output, 
-            text=True
+            text=True,
+            shell=True if self._is_windows else False
         )
         
         if not show_output:

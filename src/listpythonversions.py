@@ -22,18 +22,18 @@ class ListPythonVersions(BaseScript):
     def run(self):
 
         for version_path in Path(self._variables.python_versions_path).iterdir():
-            
-            python_path = version_path.joinpath(self._variables.python_version_relative_path)
-            try:
-                print(
-                    '{name} (Python {version})'.format(
-                        name=version_path.name,
-                        version=self.get_python_version(python_path=python_path)
-                    )
-                )
-            except FileNotFoundError:
-                pass
 
+            try:
+                version = self.get_python_version(
+                    python_path=version_path.joinpath(self._variables.python_version_relative_path)
+                )
+                if not version:
+                    raise FileNotFoundError
+
+            except FileNotFoundError:
+                continue
+
+            print('{name} (Python {version})'.format(name=version_path.name, version=version))
 
 if __name__ == '__main__':
     ListPythonVersions()

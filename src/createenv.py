@@ -72,10 +72,14 @@ class CreateEnv(BaseScript):
             for python_version in self.run_script(script_name='listpythonversions').split('\n')
         ]
 
-        if python_version not in python_versions and python_version.replace('.', '') not in python_versions:
-            raise Exception('Python version not found. Options are: {}'.format(python_versions))
+        if python_version in python_versions:
+            return python_version
 
-        return python_version
+        python_version = 'Python{}'.format(python_version.replace('.', ''))
+        if python_version in python_versions:
+            return python_version
+
+        raise Exception('Python version not found. Options are: {}'.format(python_versions))
 
 
 if __name__ == '__main__':

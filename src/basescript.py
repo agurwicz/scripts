@@ -153,7 +153,8 @@ class BaseScript(ABC):
                 message=value,
                 color='\033[91m',  # red
                 reset_color='\033[0m'
-            )
+            ),
+            file=sys.stderr
         ) 
 
     def __get_and_check_variables(self, variables_to_check):

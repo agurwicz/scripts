@@ -69,3 +69,28 @@ To run only with `<script>`, without the extension, add `.PY` to the `PATHEXT` e
 | [`createnotebook`](src/createnotebook.py)          | Creates empty Jupyter Notebook in `$PWD`.                                     | ✅           | ✅       |
 | [`pycharmnotebook`](src/pycharmnotebook.py)        | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                | ✅           | ✅       |
 | [`vscodenotebook`](src/vscodenotebook.py)          | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     | ✅           | ✅       |
+
+## Creating New Scripts
+
+New scripts should inherit from `basescript.BaseScript`.
+The following are required:
+
+- Property `_description`:
+Returns a string describing the script's purpose.
+Used in the help option.
+
+- Property `_variables_to_check`:
+Returns a list with variables that need to be defined in `variables.xml`.
+
+- Method `parse_arguments`:
+Adds arguments to `self._argument_parser`.
+Returns a call to `BaseScript.parse_arguments`.
+
+- Method `run`:
+Implements the main logic of the script.
+The following are available for use:
+    - `self._variables`: Variables loaded from `variables.xml`.
+    - `self._arguments`: User-provided arguments.
+    - `self._is_windows`: Returns if the script is being run on Windows.
+    Useful to separate OS-specific logic when necessary, though scripts should aim to keep platform-independent behavior whenever possible.
+    - All (non-private) methods defined in `BaseScript`.

@@ -42,11 +42,11 @@ Where `<scripts_path>` is the location of [`src`](src), and `<python_path>` is t
 We make use of Windows' file associations to run with `<script>.py` instead of `python <script>.py`. 
 It usually suffices to right-click on a Python file and choose a Python interpreter to always open with.
 
-If this doesn't work or leads to errors, a solution is to run the following under an elevated command prompt:
+If this doesn't work or leads to errors, a solution is to run the following (or some of the commands) under an elevated command prompt:
 ```bat
 reg delete "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.py\UserChoice" /f
-assoc .py=Python.File
-ftype Python.File="<python_path>" "%1" %*
+reg add "HKEY_CLASSES_ROOT\Applications\python.exe\shell\open\command" /f /d "\"<python_path>\" \"%1\" %*"
+assoc .py=Python.File && ftype Python.File="<python_path>" "%1" %*
 ```
 Where `<python_path>` is the path to a Python interpreter.
 

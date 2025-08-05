@@ -28,14 +28,19 @@ For example, add the following to `.bashrc` or equivalent:
 ```bash
 # Obtained from https://github.com/agurwicz/scripts.
 for script_path in "<scripts_path>"/*; do
-    if [[ -f "${script_path}" && "${script_path}" == *.py ]]; then
-        file_name="$(basename ${script_path})"
-        eval "${file_name%.*}() { "<python_path>" "${script_path}" \${@} }"
+    if [[ -f "$script_path" && ! "$script_path" == _* ]]; then
+        file_name="${script_path##*/}"
+        if [[ "$script_path" == *.py  ]]; then
+            run_command="/usr/bin/env python3"            
+        elif [[ "$script_path" == *.sh  ]]; then
+            run_command="source"  # Only bash script is `activateenv`, which requires source.
+        fi
+        eval "${file_name%.*}() { "$run_command" "$script_path" \${@} }"
     fi
 done
-unset script_path
+unset script_path file_name run_command
 ```
-Where `<scripts_path>` is the location of [`src`](src), and `<python_path>` is the path to a Python interpreter, e.g. `python` or `/usr/bin/python3`.
+Where `<scripts_path>` is the location of [`src`](src).
 
 ### Windows
 
@@ -72,7 +77,7 @@ To run only with `<script>`, without the extension, add `.PY` to the `PATHEXT` e
 
 ## Creating New Scripts
 
-New scripts should inherit from `basescript.BaseScript`.
+New scripts should inherit from `_basescript.BaseScript`.
 The following are required:
 
 - Property `_description`:

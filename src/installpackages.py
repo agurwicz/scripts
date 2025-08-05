@@ -3,7 +3,7 @@
 
 import os
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class InstallPackages(BaseScript):
@@ -56,7 +56,11 @@ class InstallPackages(BaseScript):
         )
 
         if self._arguments.activate:
-            self.run_script(script_name='activateenv', parameters=self._arguments.environment, show_output=True)
+            self.run_script(
+                script_name='_activateenv', 
+                parameters=(self._arguments.environment, '--spawn-shell'), 
+                show_output=True
+            )
 
 
 if __name__ == '__main__':

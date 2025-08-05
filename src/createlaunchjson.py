@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from textwrap import dedent
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class CreateLaunchJson(BaseScript):

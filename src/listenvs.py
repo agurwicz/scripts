@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class ListEnvs(BaseScript):

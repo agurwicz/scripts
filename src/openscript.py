@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Obtained from https://github.com/agurwicz/scripts.
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class OpenScript(BaseScript):

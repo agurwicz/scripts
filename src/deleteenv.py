@@ -4,7 +4,7 @@
 import os
 from shutil import rmtree
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class DeleteEnv(BaseScript):

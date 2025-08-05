@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Obtained from https://github.com/agurwicz/scripts. -->
+<variables
+    python_environments_path=""
+    python_versions_path=""
+    vscode_path=""
+    pycharm_path=""
+/>

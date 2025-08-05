@@ -22,10 +22,12 @@ class ListScripts(BaseScript):
     def run(self):
 
         for script_path in Path(__file__).parent.iterdir():
-            
+
             if (
                 script_path.is_file()
                 and not script_path.name.startswith(('.', '_'))
+                and not (self._is_windows and script_path.suffix == ".sh")
+                and not (not self._is_windows and script_path.suffix == ".bat")
             ):
 
                 print(script_path.with_suffix('').name)

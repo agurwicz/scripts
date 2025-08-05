@@ -3,6 +3,7 @@
 
 import os
 import sys
+from argparse import SUPPRESS
 
 from _basescript import BaseScript
 
@@ -19,7 +20,7 @@ class ActivateEnv(BaseScript):
 
     def parse_arguments(self):
         
-        # Redirecting argparse's help to stderr to work with `eval`.
+        # Redirecting argparse's help to stderr to work with `eval` and `call`.
         help_function = self._argument_parser.print_help
         self._argument_parser.print_help = lambda: help_function(sys.stderr)
 
@@ -27,6 +28,12 @@ class ActivateEnv(BaseScript):
             'environment_name',
             help='name of the environment to be activated',
             type=self.existing_environment
+        )
+
+        self._argument_parser.add_argument(
+            '--spawn-shell',
+            help=SUPPRESS,  # Argument used for internal scripts, shouldn't appear for users.
+            action='store_true'
         )
 
         return super().parse_arguments()
@@ -46,9 +53,15 @@ class ActivateEnv(BaseScript):
 
         else:
             # Calling `activate.bat` from subprocess doesn't propagate environment to the terminal.
-            # Solving by spawning a new shell that starts running `activate.bat`.
-            # Exit with `exit` instead of usual `deactivate`.
-            self.run_command(command='cmd', parameters=('/k', activate_path), show_output=True)
+
+            if not self._arguments.spawn_shell:
+                # Solving by printing to stdout, to be captured by a `call` from a batch script.
+                print(activate_path, file=sys.stdout)
+
+            else:
+                # Solving by spawning a new shell that starts running `activate.bat`.
+                # Exit with `exit` instead of usual `deactivate`.
+                self.run_command(command='cmd', parameters=('/k', activate_path), show_output=True)
 
 if __name__ == '__main__':
     ActivateEnv()

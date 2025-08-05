@@ -6,4 +6,12 @@ if [[ "$0" == "$BASH_SOURCE" && "$1" != "-h" && "$1" != "--help" ]]; then
     exit 1
 fi
 
-eval "$(/usr/bin/env python3 "$(dirname "$(command -v "$0")")/_activateenv.py" "$@")"
+spawn_shell_argument="--spawn-shell"
+script_path="$(dirname "$(command -v "$0")")/_activateenv.py"
+command="/usr/bin/env python3 \"$script_path\" $@"
+
+if [[ "$1" == "$spawn_shell_argument" || "$2" == "$spawn_shell_argument" ]]; then
+    eval "$command"
+else
+    eval "$(eval "$command")"
+fi

@@ -47,9 +47,20 @@ class ActivateEnv(BaseScript):
         )
 
         if not self._is_windows:
-            # Can't `source` from within Python. 
-            # Solving by printing to stdout, to be captured by an `eval` call from a bash script.
-            print('source {}'.format(activate_path), file=sys.stdout)
+            # Can't `source` from within Python.
+
+            if not self._arguments.spawn_shell:
+                # Solving by printing to stdout, to be captured by an `eval` call from a bash script.
+                print('source {}'.format(activate_path), file=sys.stdout)
+
+            else:
+                # Solving by setting `rcfile` to the activation script, but this spawns a new shell.
+                # Exit with `exit` instead of usual `deactivate`.
+                self.run_command(
+                    command='/usr/bin/env',
+                    parameters=('bash', '--rcfile', activate_path),
+                    show_output=True
+                )
 
         else:
             # Calling `activate.bat` from subprocess doesn't propagate environment to the terminal.

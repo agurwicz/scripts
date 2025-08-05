@@ -2,6 +2,7 @@
 # Obtained from https://github.com/agurwicz/scripts.
 
 import os
+import sys
 
 from _basescript import BaseScript
 
@@ -17,6 +18,10 @@ class ActivateEnv(BaseScript):
         return ['python_environments_path', 'activate_relative_path']
 
     def parse_arguments(self):
+        
+        # Redirecting argparse's help to stderr to work with `eval`.
+        help_function = self._argument_parser.print_help
+        self._argument_parser.print_help = lambda: help_function(sys.stderr)
 
         self._argument_parser.add_argument(
             'environment_name',
@@ -36,9 +41,8 @@ class ActivateEnv(BaseScript):
 
         if not self._is_windows:
             # Can't `source` from within Python. 
-            # Solving by setting `rcfile` to the activation script, but this spawns a new shell.
-            # Exit with `exit` instead of usual `deactivate`.
-            self.run_command(command='/usr/bin/env', parameters=('bash', '--rcfile', activate_path), show_output=True)
+            # Solving by printing to stdout, to be captured by an `eval` call from a bash script.
+            print('source {}'.format(activate_path), file=sys.stdout)
 
         else:
             # Calling `activate.bat` from subprocess doesn't propagate environment to the terminal.

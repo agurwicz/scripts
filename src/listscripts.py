@@ -25,7 +25,6 @@ class ListScripts(BaseScript):
             
             if (
                 script_path.is_file()
-                and script_path.suffix == '.py'
                 and not script_path.name.startswith(('.', '_'))
             ):
 

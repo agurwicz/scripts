@@ -3,7 +3,7 @@
 
 import os
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class ActivateEnv(BaseScript):

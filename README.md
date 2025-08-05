@@ -72,7 +72,7 @@ To run only with `<script>`, without the extension, add `.PY` to the `PATHEXT` e
 
 ## Creating New Scripts
 
-New scripts should inherit from `basescript.BaseScript`.
+New scripts should inherit from `_basescript.BaseScript`.
 The following are required:
 
 - Property `_description`:

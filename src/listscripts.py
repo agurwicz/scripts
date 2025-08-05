@@ -3,7 +3,7 @@
 
 from pathlib import Path
 
-from basescript import BaseScript
+from _basescript import BaseScript
 
 
 class ListScripts(BaseScript):
@@ -20,19 +20,16 @@ class ListScripts(BaseScript):
         return super().parse_arguments()
 
     def run(self):
-        
-        ignore = ['basescript.py']
 
         for script_path in Path(__file__).parent.iterdir():
             
             if (
                 script_path.is_file()
                 and script_path.suffix == '.py'
-                and script_path.name not in ignore
-                and not script_path.name.startswith('.')
+                and not script_path.name.startswith(('.', '_'))
             ):
 
-                print(script_path.name)
+                print(script_path.with_suffix('').name)
 
 
 if __name__ == '__main__':

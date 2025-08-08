@@ -73,9 +73,12 @@ class BaseScript(ABC):
     
     def run_script(self, script_name, parameters=(), show_output=False):
 
+        if not isinstance(parameters, (list, tuple)):
+            parameters = [parameters]
+
         return self.run_command(
-            command=Path(__file__).parent.joinpath(script_name+'.py'), 
-            parameters=parameters,
+            command=sys.executable,
+            parameters=[Path(__file__).parent.joinpath(script_name).with_suffix(suffix='.py')] + list(parameters),
             show_output=show_output
         )
 

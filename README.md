@@ -59,22 +59,22 @@ To run only with `<script>`, without the extension, add `.PY` to the `PATHEXT` e
 
 ## List of Scripts
 
-| Script                                             | Purpose                                                                       | macOS/Linux? | Windows?  |
-|----------------------------------------------------|-------------------------------------------------------------------------------|:------------:|:---------:|
-| [`createenv`](src/createenv.py)                    | Creates Python environment.                                                   | ✅           | ✅       |
-| [`activateenv`](src/activateenv.py)                | Activates Python environment.                                                 | ✅           | ✅       |
-| [`deleteenv`](src/deleteenv.py)                    | Deletes Python environment.                                                   | ✅           | ✅       |
-| [`listenvs`](src/listenvs.py)                      | Lists all Python environments.                                                | ✅           | ✅       |
-| [`installpackages`](src/installpackages.py)        | Installs and upgrades packages in Python environment.                         | ✅           | ✅       |
-| [`listpythonversions`](src/listpythonversions.py)  | Lists all Python versions available.                                          | ✅           | ✅       |
-| [`listscripts`](src/listscripts.py)                | Lists scripts available.                                                      | ✅           | ✅       |
-| [`catscript`](src/catscript.py)                    | Prints content of script in `$PATH`.                                          | ✅           | ✅       |
-| [`openscript`](src/openscript.py)                  | Opens script in `$PATH`.                                                      | ✅           | ✅       |
-| [`openfile`](src/openfile.py)                      | Opens file in `$PATH` or `$HOME`.                                             | ✅           | ✅       |
-| [`createlaunchjson`](src/createlaunchjson.py)      | Creates "launch.json" file for Visual Studio Code with default configuration. | ✅           | ✅       |
-| [`createnotebook`](src/createnotebook.py)          | Creates empty Jupyter Notebook in `$PWD`.                                     | ✅           | ✅       |
-| [`pycharmnotebook`](src/pycharmnotebook.py)        | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                | ✅           | ✅       |
-| [`vscodenotebook`](src/vscodenotebook.py)          | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     | ✅           | ✅       |
+| Script                                             | Purpose                                                                       |
+|----------------------------------------------------|-------------------------------------------------------------------------------|
+| [`createenv`](src/createenv.py)                    | Creates Python environment.                                                   | 
+| [`activateenv`](src/activateenv.py)                | Activates Python environment.                                                 |
+| [`deleteenv`](src/deleteenv.py)                    | Deletes Python environment.                                                   |
+| [`listenvs`](src/listenvs.py)                      | Lists all Python environments.                                                |
+| [`installpackages`](src/installpackages.py)        | Installs and upgrades packages in Python environment.                         |
+| [`listpythonversions`](src/listpythonversions.py)  | Lists all Python versions available.                                          |
+| [`listscripts`](src/listscripts.py)                | Lists scripts available.                                                      |
+| [`catscript`](src/catscript.py)                    | Prints content of script in `$PATH`.                                          |
+| [`openscript`](src/openscript.py)                  | Opens script in `$PATH`.                                                      |
+| [`openfile`](src/openfile.py)                      | Opens file in `$PATH` or `$HOME`.                                             |
+| [`createlaunchjson`](src/createlaunchjson.py)      | Creates "launch.json" file for Visual Studio Code with default configuration. |
+| [`createnotebook`](src/createnotebook.py)          | Creates empty Jupyter Notebook in `$PWD`.                                     |
+| [`pycharmnotebook`](src/pycharmnotebook.py)        | Creates empty Jupyter Notebook in `$PWD` and opens in PyCharm.                |
+| [`vscodenotebook`](src/vscodenotebook.py)          | Creates empty Jupyter Notebook in `$PWD` and opens in Visual Studio Code.     |
 
 ## Creating New Scripts
 

@@ -115,6 +115,50 @@ class BaseScript(ABC):
         
         return script_path
 
+    def open_text_file(self, file_path):
+
+        if not self._is_windows:
+            self.run_command(command='open', parameters=file_path)
+
+        else:
+            # Opening the script in the default editor for text files, ignoring file associations.
+            import winreg
+
+            def __reg_query(key, sub_key, value):
+
+                key = winreg.OpenKey(key=key, sub_key=sub_key)
+                value, _ = winreg.QueryValueEx(key, value)
+                winreg.CloseKey(key)
+
+                return value
+
+            txt_extension = '.txt'
+            try:
+                program_key = __reg_query(
+                    key=winreg.HKEY_CURRENT_USER,
+                    sub_key=r'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\{}\UserChoice'.format(
+                        txt_extension
+                    ),
+                    value='ProgId'
+                )
+
+            except FileNotFoundError:
+                program_key = self.run_command(command='assoc', parameters=txt_extension).split('=')[-1]
+
+            try:
+                txt_open_command = __reg_query(
+                    key=winreg.HKEY_CLASSES_ROOT,
+                    sub_key=r'{}\shell\open\command'.format(program_key),
+                    value=''
+                ).split('\"')[1]
+
+            except FileNotFoundError:
+                txt_open_command = 'notepad.exe'  # Falling back to Notepad if default program not found.
+
+            self.open_command(command=txt_open_command, parameters=file_path)
+
+        print('Opened {}'.format(file_path), file=sys.stdout)
+
     def existing_environment(self, environment_name):
         
         def __check_file(relative_path):

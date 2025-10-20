@@ -3,6 +3,7 @@
 
 import os
 import sys
+from argparse import SUPPRESS
 
 from _basescript import BaseScript
 from listenvs import ListEnvs
@@ -19,23 +20,36 @@ class StartSpyder(BaseScript):
         return ['python_environments_path']
 
     def parse_arguments(self):
+        
+        # Redirecting argparse's help to stderr to work with `eval` and `call`.
+        help_function = self._argument_parser.print_help
+        self._argument_parser.print_help = lambda: help_function(sys.stderr)
 
         self._argument_parser.add_argument(
             'environment_name',
-            help='name of the environment to run Spyder in',
+            help='name of the environment to be activated',
             type=self.existing_environment
+        )
+
+        self._argument_parser.add_argument(
+            '--spawn-shell',
+            help=SUPPRESS,  # Argument used for internal scripts, shouldn't appear for users.
+            action='store_true'
         )
 
         return super().parse_arguments()
 
     def run(self):
-        self.activate_env()
+        #self.activate_env()
         
         
         
         
-    def activate_env(self):
+    #def activate_env(self):
+        print("\n\n\n")
         print(self._arguments.environment_name)
+        print(self._arguments.spawn_shell)
+        print("\n\n")
         
         activate_path = os.path.join(
             self._variables.python_environments_path,

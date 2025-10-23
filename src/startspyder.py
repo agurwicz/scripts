@@ -3,8 +3,7 @@
 
 import os
 import sys
-from pathlib import Path
-import subprocess
+
 
 from _basescript import BaseScript
 
@@ -37,10 +36,7 @@ class StartSpyder(BaseScript):
         if spyder_args is None:
             spyder_args = []
         
-        self.open_command(
-            command=spyder_path,
-            parameters=spyder_args
-        )
+        self.open_command(command=spyder_path, parameters=spyder_args)
 
     def run(self):
         if self._arguments.environment_name is None:

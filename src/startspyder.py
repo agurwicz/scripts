@@ -33,11 +33,16 @@ class StartSpyder(BaseScript):
 
         return super().parse_arguments()
     
-    def launch_spyder(self, python_path: Path, spyder_args: list[str] | None=None) -> int:
-        cmd = [str(python_path), "-m", "spyder.app.start"]
+    def launch_spyder(self, python_path: str, spyder_args: list[str] | None=None) -> int:
+        parameters = ["-m", "spyder.app.start"]
         if spyder_args:
-            cmd.extend(spyder_args)
-        return subprocess.call(cmd)
+            parameters.extend(spyder_args)
+        
+        self.open_command(
+            command=python_path,
+            parameters=parameters
+        )
+
 
     def run(self):
         if self._arguments.environment_name is None:
@@ -49,19 +54,7 @@ class StartSpyder(BaseScript):
             self._variables.python_relative_path
         ) if self._arguments.environment_name is not None else 'python'
         
-        # self.launch_spyder(python_path)
-
-        # self.run_command(
-        #     command=python_path,
-        #     parameters=["-m", "spyder.app.start"],
-        #     show_output=True
-        # )
-
-        self.open_command(
-            command=python_path,
-            parameters=["-m", "spyder.app.start"]
-        )
-        
+        self.launch_spyder(python_path)
 
 
 if __name__ == '__main__':

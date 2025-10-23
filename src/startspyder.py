@@ -33,28 +33,26 @@ class StartSpyder(BaseScript):
 
         return super().parse_arguments()
     
-    def launch_spyder(self, python_path: str, spyder_args: list[str] | None=None) -> int:
-        parameters = ["-m", "spyder.app.start"]
-        if spyder_args:
-            parameters.extend(spyder_args)
+    def launch_spyder(self, spyder_path: str, spyder_args: list[str] | None=None) -> int:
+        if spyder_args is None:
+            spyder_args = []
         
         self.open_command(
-            command=python_path,
-            parameters=parameters
+            command=spyder_path,
+            parameters=spyder_args
         )
-
 
     def run(self):
         if self._arguments.environment_name is None:
             raise Exception("Must pass environment to activate.")
 
-        python_path = os.path.join(
+        spyder_path = os.path.join(
             self._variables.python_environments_path, 
             self._arguments.environment_name, 
-            self._variables.python_relative_path
-        ) if self._arguments.environment_name is not None else 'python'
+            "Scripts/spyder.exe"
+        )
         
-        self.launch_spyder(python_path)
+        self.launch_spyder(spyder_path)
 
 
 if __name__ == '__main__':

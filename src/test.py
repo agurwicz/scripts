@@ -53,6 +53,9 @@ def IsWindows() -> bool:
     return platform.system().lower().startswith("win")
 
 def ResolveVenvPython(venvPath: str) -> Path:
+    environments_directory = Path("C:\\Users\\lance.endres\\AppData\\Local\\Programs\\Python\\envs\\")
+    venvPath = environments_directory.joinpath(venvPath)
+    
     venv = Path(venvPath).expanduser().resolve()
     candidate = venv / ("Scripts/python.exe" if IsWindows() else "bin/python")
     return candidate
@@ -78,7 +81,8 @@ def EnsureSpyder(pythonExecutable: Path, doUpgrade: bool) -> None:
     subprocess.run(pipCmd, check=True)
 
 def LaunchSpyder(pythonExecutable: Path, spyderArgs: list[str] | None) -> int:
-    cmd = [str(pythonExecutable), "-m", "spyder"]
+    cmd = [str(pythonExecutable), "-m", "spyder.app.start"]
+
     if spyderArgs:
         cmd.extend(spyderArgs)
     return subprocess.call(cmd)

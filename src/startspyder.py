@@ -31,7 +31,6 @@ class StartSpyder(BaseScript):
 
         return super().parse_arguments()
     
-    
     def _get_env_path(self):
         return os.path.join(
             self._variables.python_environments_path, 
@@ -56,6 +55,9 @@ class StartSpyder(BaseScript):
         if spyder_args is None:
             spyder_args = []
             
+        # For Spyder to have separate PYTHONPATH management, it needs a separate configuration file
+        # for each environment. It cannot be done automatically by Spyder so we have to pass an argument
+        # to tell Spyder where to retrieve/store its configuration file.
         configFile = self._get_env_path() + "/.spyder-config"
         args = ["--conf-dir", configFile] + spyder_args
         
